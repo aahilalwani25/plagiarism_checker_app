@@ -4,6 +4,8 @@ import requests
 from googlesearch import search
 from bs4 import BeautifulSoup
 from rabin_karp import StringMatch
+from threading import Thread
+
 
 #procedure
 #1. take each sentence and search it on google
@@ -18,7 +20,7 @@ def detect_similar_content(sentence):
     fetched_urls = []
 
 
-    for urls in search(query=sentence,pause=3, num=50):
+    for urls in search(query=sentence,pause=3, num=10):
         # append the urls we got from the google search
         fetched_urls.append(urls)
 
@@ -35,7 +37,8 @@ def detect_similar_content(sentence):
         #print(soup.find('p')) #fetch all the texts, NOT html contents
         stringMatching = StringMatch(source=str(soup.find_all('p')), sentence=sentence)
         sm.__setitem__(url, stringMatching.search())
-    
+        
+        print(sm)
     #now find out which website has most plagiarised content by looking the value size of each key
     
     return sm

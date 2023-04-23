@@ -85,11 +85,11 @@ class _MainDashboardState extends State<MainDashboard> {
                     child: ElevatedButton(
                         onPressed: () async {
                           if (_form_key.currentState!.validate()) {
-                            print(content.content!);
+                            
                             PlagiarismController pc =
                                 PlagiarismController(text: content.content!);
-                            var t = await pc.start_check();
-                            print(t);
+                            print(await pc.start_check());
+                            
                           }
                         },
                         style: ElevatedButton.styleFrom(
