@@ -1,16 +1,14 @@
 # plagiarism_checker_app
 
-A new Flutter project.
+# Features:
+The following features will be included in the plagiarism checker application:
 
-## Getting Started
+User Authentication: The user will be required to sign up and log in to the application using their email address and password.
 
-This project is a starting point for a Flutter application.
+Text Input: The user will be able to input their text into the application through a text editor.
 
-A few resources to get you started if this is your first Flutter project:
+Plagiarism Detection: The application will check the entered text against existing content on the internet and identify any similarities.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Plagiarism Report: A detailed plagiarism report will be generated, indicating the percentage of copied content, and provide the source of the content.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Sharing and Saving: The user will be able to save and share the report via email or any other social media platform.
