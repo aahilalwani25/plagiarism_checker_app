@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../global/components/Screen.dart';
-import 'Manage Teachers/view_teachers.dart';
+import 'view_teachers.dart';
 
 // Widget Teacher_List(){
 //   return Column(
