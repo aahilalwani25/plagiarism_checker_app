@@ -1,7 +1,10 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/foundation.dart';
+import 'package:plagiarism_checker_app/Models/login_model.dart';
 
 class Database {
   FirebaseDatabase? _db;
+  DatabaseReference? _databaseReference;
 
   Database() {
     _db = FirebaseDatabase.instance;
@@ -9,11 +12,19 @@ class Database {
 
   Future<bool> InsertData(String tableName, Map<String, dynamic> value) async {
     bool check = false;
-    DatabaseReference databaseReference = _db!.ref('/$tableName');
-    await databaseReference.push().set(value).then((value) {
+    _databaseReference??= _db!.ref('/$tableName');
+    await _databaseReference!.push().set(value).then((value) {
       check = true;
     });
     return check;
+  }
+
+  Future<Stream<DatabaseEvent>> getData(String tableName) async{
+    _databaseReference ??= _db!.ref('/$tableName');
+
+    //if snapshot is null, then initialize it
+    DataSnapshot _snapshot = await _databaseReference!.get();
+    return _databaseReference!.onValue;
   }
 
   // Future<List> GetData(String tableName, Map<String,dynamic> value) async{
@@ -37,35 +48,4 @@ class Database {
 
   //   return datas;
   // }
-}
-
-class Login extends Database {
-  DatabaseReference? _databaseReference;
-  DataSnapshot? _snapshot;
-  bool check = false;
-  @override
-  Future<bool> login(String tableName, Map<String, dynamic> value) async {
-    _databaseReference ??= _db!.ref('/$tableName');
-
-    //if snapshot is null, then initialize it
-    _snapshot ??= await _databaseReference!.get();
-
-    _databaseReference!.onValue.listen((event) {
-      for (var child in event.snapshot.children) {
-        //for finding unique id
-        //print(child.key);
-        Map<dynamic, dynamic> data = child.value as Map<dynamic, dynamic>;
-
-        if (data['email'] == value['email'] &&
-            data['password'] == value['password']) {
-          check = true;
-          break;
-        }
-
-        print(data);
-      }
-    });
-
-    return check;
-  }
 }

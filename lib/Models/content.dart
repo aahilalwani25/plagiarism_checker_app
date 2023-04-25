@@ -4,10 +4,24 @@ class Content with ChangeNotifier {
   String? _content;
   int? _charactersCount;
   int? _wordsCount;
+  bool _enabled= true;
+  dynamic _plagiarised;
 
   Content();
 
+  void setEnabled(bool enabled){
+    _enabled= enabled;
+    notifyListeners();
+  }
+  bool get enabled=> _enabled;
   
+
+  void setPlagiarised(dynamic plag){
+    _plagiarised=plag;
+    notifyListeners();
+  }
+  dynamic get plagiarised=> _plagiarised;
+
   void setContent(String content) {
     _content = content;
     notifyListeners();

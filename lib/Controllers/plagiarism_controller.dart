@@ -9,11 +9,11 @@ class PlagiarismController{
   dynamic start_check() async{
     MultipartRequest request= MultipartRequest('POST', Uri.parse('http://192.168.2.107:8000/check-plag/'));
     request.fields.addAll({'query':text});
-    StreamedResponse streamedResponse= await request.send();
     request.headers.addAll({
       'Content-Type':'Application/json',
+      'Retry-After':'3600'
     });
-
+    StreamedResponse streamedResponse = await request.send();
     if(streamedResponse.statusCode==308){
       return "Wait...";
     }

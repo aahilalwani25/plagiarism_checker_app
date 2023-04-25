@@ -1,19 +1,41 @@
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import '../Database/database.dart';
+import '../Views/admin_dashboard.dart';
+import '../global/components/toast_message.dart';
 
 class LoginController{
 
-  Login? login;
+  Database? db;
+  
   LoginController(){
-    login= Login();
+    db= Database();
   }
 
-  Future<bool> getLogin(String email, String password) async {
-    return await login!.login('super_admin', {"email":email,"password":password});
-  }
+  Future<void> getLogin(BuildContext context, String email, String password) async {
+    final tableDatas = await db!.getData("super_admin");
+    tableDatas.forEach((DatabaseEvent event) {
+      for (DataSnapshot child in event.snapshot.children) {
+        //for finding unique id
+        //print(child.key);
 
-  // Future<bool> getLogin(Map<String,dynamic> data) async {
-  //   bool check=false;
-  //   check= await db!.InsertData("admin", data);
-  //   return check;
-  // }
+        //get sub-children of unique id
+        Map<dynamic, dynamic> data = child.value as Map<dynamic, dynamic>;
+
+        if (data['email'] == email && data['password'] == password) {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (builder) => AdminDashboard(
+                        email: email,
+                      )));
+          break;
+        }else{
+          ToastMessage(context: context, message: "Incorrect Email or Password", type: "error").show();
+        }
+      }
+    });
+
+
+  }
 }

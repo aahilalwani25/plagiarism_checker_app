@@ -58,7 +58,7 @@ class _MainDashboardState extends State<MainDashboard> {
                   width: MediaQuery.of(context).size.width * 0.8,
                   height: MediaQuery.of(context).size.height * 0.4,
                   child: TextFormField(
-                    
+                    enabled: content.enabled,
                     validator: (text) {
                       if (text!.isEmpty) {
                         return "Please enter the content";
@@ -83,25 +83,32 @@ class _MainDashboardState extends State<MainDashboard> {
                     width: MediaQuery.of(context).size.width * 0.8,
                     height: MediaQuery.of(context).size.height * 0.05,
                     child: ElevatedButton(
+                      
                         onPressed: () async {
                           if (_form_key.currentState!.validate()) {
-                            
+                            content.setEnabled(false);
                             PlagiarismController pc =
                                 PlagiarismController(text: content.content!);
-                            print(await pc.start_check());
-                            
+                            content.setPlagiarised(await pc.start_check());
+                            content.setEnabled(true);
                           }
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                               Colors.green,
+                               content.enabled? Colors.green: Colors.green[300],
                         ),
-                        child: const Center(
-                            child: Text(
+                        child: Center(
+                            child: content.enabled? const Text(
                           "Submit",
-                        ))),
+                        ): const CircularProgressIndicator(color: Colors.white, strokeWidth: 2,)),
+                      ),
                   ),
-                )
+                ),
+                content.plagiarised!=null? Padding(
+                  padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * 0.01),
+                  child: Text(content.plagiarised!.toString()),
+                ):const Text("No Plagiarism"),
               ],
             ),
           );

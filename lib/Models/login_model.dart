@@ -4,6 +4,7 @@ class LoginModel with ChangeNotifier{
 
   String? _email,_password;
   bool _remember_me=false;
+  
 
   void setEmail(String email){
     _email=email;
@@ -19,6 +20,8 @@ class LoginModel with ChangeNotifier{
     _remember_me=remember_me;
     notifyListeners();
   }
+
+  
   String get email=>_email!;
   String get password=> _password!;
   bool get remember_me =>_remember_me;

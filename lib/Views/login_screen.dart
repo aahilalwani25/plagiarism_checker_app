@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import '../Controllers/login_controller.dart';
 import '../Database/database.dart';
 import '../Models/login_model.dart';
 import '../global/components/Screen.dart';
+import '../global/components/toast_message.dart';
 import 'admin_dashboard.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -125,20 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         LoginController loginController = LoginController();
 
                         loginController
-                            .getLogin(loginModel.email, loginModel.password)
-                            .then((value) {
-                          if (value) {
-                            roundedLoadingButtonController.success();
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (builder) => AdminDashboard(
-                                          email: loginModel.email,
-                                        )));
-                          }else{
-                            
-                          }
-                        });
+                            .getLogin(context, loginModel.email, loginModel.password);
                       }
                       Future.delayed(Duration(seconds: 2), () {
                         roundedLoadingButtonController.reset();

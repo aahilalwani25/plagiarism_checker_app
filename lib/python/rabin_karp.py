@@ -8,17 +8,16 @@ class StringMatch:
         self.patterns = self.sentence.split(sep=" ")
 
     def search(self):
-
         lists= list()
+        maxLength=0
         for j in range(len(self.patterns)):
             pattern = self.patterns[j]
-            lists=(self.rabin_karp(pattern))
-
+            if len(self.rabin_karp(pattern))>maxLength:
+                lists=(self.rabin_karp(pattern))
+                maxLength= len(self.rabin_karp(pattern))
         return lists
 
-
-
-    def rabin_karp(self, pattern):
+    def rabin_karp(self, pattern:str):
         paragraphLength = len(self.paragraph)
         sentenceLength = len(self.sentence)
         for i in range(0, paragraphLength-sentenceLength-1, 1):
@@ -28,5 +27,4 @@ class StringMatch:
                 if (paraHash == patternHash):
                     if self.paragraph[i:i+len(pattern)] == pattern:
                         self.plagiarised.add(pattern)
-
         return list(self.plagiarised)

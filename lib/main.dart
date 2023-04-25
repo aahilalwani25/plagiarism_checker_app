@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.green,
           primarySwatch: Colors.blue,
         ),
-        home: const MainDashboard(),
+        home: const LoginScreen(),
       ),
     );
   }
