@@ -14,8 +14,8 @@ class MainDashboard extends StatefulWidget {
 }
 
 class _MainDashboardState extends State<MainDashboard> {
-  GlobalKey<FormState> _form_key = GlobalKey<FormState>();
-  CustomTextBox _customTextBox = CustomTextBox();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final CustomTextBox _customTextBox = CustomTextBox();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class _MainDashboardState extends State<MainDashboard> {
         ),
         body: Consumer<Content>(builder: (builder, content, child) {
           return Form(
-            key: _form_key,
+            key: _formKey,
             child: Column(
               children: [
                 const Center(
@@ -85,7 +85,7 @@ class _MainDashboardState extends State<MainDashboard> {
                     child: ElevatedButton(
                       
                         onPressed: () async {
-                          if (_form_key.currentState!.validate()) {
+                          if (_formKey.currentState!.validate()) {
                             content.setEnabled(false);
                             PlagiarismController pc =
                                 PlagiarismController(text: content.content!);

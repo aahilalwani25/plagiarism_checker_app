@@ -13,7 +13,34 @@ class LoginController{
   }
 
   Future<void> getLogin(BuildContext context, String email, String password) async {
-    final tableDatas = await db!.getData("super_admin");
+    final tableDatas = await db!.getData("teachers");
+    tableDatas.forEach((DatabaseEvent event) {
+      for (DataSnapshot child in event.snapshot.children) {
+        //for finding unique id
+        //print(child.key);
+
+        //get sub-children of unique id
+        Map<dynamic, dynamic> data = child.value as Map<dynamic, dynamic>;
+
+        if (data['email'] == email && data['password'] == password) {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (builder) => AdminDashboard(
+                        email: email,
+                      )));
+          break;
+        }else{
+          getLoginAsTeacher(context, email, password);
+          getLoginAsStudent(context, email, password);
+          //ToastMessage(context: context, message: "Incorrect Email or Password", type: "error").show();
+        }
+      }
+    });
+  }
+
+  Future<void> getLoginAsTeacher(BuildContext context, String email, String password) async {
+    final tableDatas = await db!.getData("teachers");
     tableDatas.forEach((DatabaseEvent event) {
       for (DataSnapshot child in event.snapshot.children) {
         //for finding unique id
@@ -35,7 +62,30 @@ class LoginController{
         }
       }
     });
+  }
 
+  Future<void> getLoginAsStudent(BuildContext context, String email, String password) async {
+    final tableDatas = await db!.getData("students");
+    tableDatas.forEach((DatabaseEvent event) {
+      for (DataSnapshot child in event.snapshot.children) {
+        //for finding unique id
+        //print(child.key);
 
+        //get sub-children of unique id
+        Map<dynamic, dynamic> data = child.value as Map<dynamic, dynamic>;
+
+        if (data['email'] == email && data['password'] == password) {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (builder) => AdminDashboard(
+                        email: email,
+                      )));
+          break;
+        }else{
+          ToastMessage(context: context, message: "Incorrect Email or Password", type: "error").show();
+        }
+      }
+    });
   }
 }

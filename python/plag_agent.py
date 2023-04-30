@@ -11,7 +11,8 @@ from urllib3 import disable_warnings
 # 1. take each sentence and search it on google
 # 2. store all the urls in the array
 # 3. scrape the data of each url and store it with the corresponding url (2d-array)
-# 4. match each sentence with the scraped data using rabin-karp algorithm
+# 4. Break each paragraph of the user into an array of pattern.
+# 4. match each pattern with the scraped data using rabin-karp algorithm
 # if matches, store it in the similarity array (2d-array)
 
 app = Flask(__name__)
