@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import '../Controllers/login_controller.dart';
-import '../Database/database.dart';
 import '../Models/login_model.dart';
 import '../global/components/Screen.dart';
-import '../global/components/toast_message.dart';
-import 'admin_dashboard.dart';
+
 
 class LoginScreen extends StatefulWidget {
   String user;
@@ -65,16 +62,20 @@ class _LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: TextFormField(
-                    obscureText: true,
+                    obscureText: !loginModel.password_visible,
                     onChanged: (password) {
                       loginModel.setPassword(password);
                     },
                     validator: (password) =>
                         password!.isEmpty ? "Please enter Password" : null,
                     decoration: InputDecoration(
+                        labelText: "Password *",
                         prefixIcon: const Icon(Icons.password),
                         hintText: "Enter your Password",
                         suffixIcon: GestureDetector(
+                          onTap: () {
+                            loginModel.setPasswordVisible(!loginModel.password_visible);
+                          },
                           child: const Icon(Icons.remove_red_eye_sharp),
                         ),
                         border: const OutlineInputBorder(
@@ -121,8 +122,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (formKey.currentState!.validate()) {
                         LoginController loginController = LoginController();
 
-                        loginController
-                            .getLogin(context, loginModel.email, loginModel.password, widget.user);
+                        loginController.getLogin(context, loginModel.email,
+                            loginModel.password, widget.user);
                       }
                       Future.delayed(const Duration(seconds: 2), () {
                         roundedLoadingButtonController.reset();
@@ -143,7 +144,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: BoxDecoration(
                         border: Border.all(
                             color: const Color.fromARGB(255, 194, 194, 194)),
-                        borderRadius: const BorderRadius.all(Radius.circular(20))),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20))),
                     child: Image.asset(
                       'assets/images/google_logo.png',
                     ), //google logo

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class NewStudent with ChangeNotifier {
+  bool _password_visible=false, _c_password_visible=false;
   String? _email;
   String? _password;
   String? _phone;
@@ -12,6 +13,18 @@ class NewStudent with ChangeNotifier {
   String? _city;
 
   NewStudent();
+
+  bool get password_visible => _password_visible;
+  void setPasswordVisible(bool password_visible) {
+    _password_visible= password_visible;
+    notifyListeners();
+  }
+
+  bool get c_password_invisible => _c_password_visible;
+  void setConfirmPasswordVisible(bool confirm_password_visible) {
+    _c_password_visible = confirm_password_visible;
+    notifyListeners();
+  }
 
   String? get email => _email;
   void setEmail(String? email) {
@@ -65,30 +78,5 @@ class NewStudent with ChangeNotifier {
   void setCountryCode(String? code) {
     _country_code = code;
     notifyListeners();
-  }
-
-
-  NewStudent.fromJson(Map<String, dynamic> json) {
-    _email = json['email'];
-    _password = json['password'];
-    _phone = json['phone'];
-    _gender = json['gender'];
-    _username = json['username'];
-    _country = json['country'];
-    _state = json['State'];
-    _city = json['City'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['email'] = this._email;
-    data['password'] = this._password;
-    data['phone'] = this._phone;
-    data['gender'] = this._gender;
-    data['username'] = this._username;
-    data['country'] = this._country;
-    data['State'] = this._state;
-    data['City'] = this._city;
-    return data;
   }
 }

@@ -4,6 +4,13 @@ class LoginModel with ChangeNotifier{
 
   String? _email,_password;
   bool _remember_me=false;
+  bool _password_visible = false;
+
+  bool get password_visible => _password_visible;
+  void setPasswordVisible(bool password_visible) {
+    _password_visible = password_visible;
+    notifyListeners();
+  }
   
 
   void setEmail(String email){

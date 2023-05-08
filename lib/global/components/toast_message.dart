@@ -23,10 +23,9 @@ class ToastMessage{
 
 
     return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: const Center(
-          child: Text(
-        "Incorrect Email or password",
-        style: TextStyle(color: Colors.white),
+      content: Center(
+          child: Text(message,
+        style: const TextStyle(color: Colors.white),
       )),
       backgroundColor: backgroundColor,
       behavior: SnackBarBehavior.floating,

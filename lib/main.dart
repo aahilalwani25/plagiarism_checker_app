@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:plagiarism_checker_app/Models/content.dart';
-import 'package:plagiarism_checker_app/Views/login_screen.dart';
 import 'package:provider/provider.dart';
 import 'Models/login_model.dart';
 import 'Models/new_student.dart';
