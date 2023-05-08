@@ -10,7 +10,8 @@ import '../global/components/toast_message.dart';
 import 'admin_dashboard.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  String user;
+  LoginScreen({super.key, required this.user});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -116,30 +117,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: roundedLoadingButtonController,
                     errorColor: Colors.red,
                     successColor: Colors.green,
-                    // style: ElevatedButton.styleFrom(
-                    //   backgroundColor: Colors.green,
-                    //   fixedSize: const Size.fromWidth(300),
-                    //   //minimumSize: Size.fromWidth(200),
-                    // ),
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         LoginController loginController = LoginController();
 
                         loginController
-                            .getLogin(context, loginModel.email, loginModel.password);
+                            .getLogin(context, loginModel.email, loginModel.password, widget.user);
                       }
-                      Future.delayed(Duration(seconds: 2), () {
+                      Future.delayed(const Duration(seconds: 2), () {
                         roundedLoadingButtonController.reset();
                       });
                     },
                     child: const Text('LOGIN')),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text('New to the Application? '),
-                  GestureDetector(onTap: () {}, child: const Text('Sign up')),
-                ],
               ),
               const Padding(
                 padding: EdgeInsets.only(top: 16.0),
@@ -154,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: BoxDecoration(
                         border: Border.all(
                             color: const Color.fromARGB(255, 194, 194, 194)),
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                        borderRadius: const BorderRadius.all(Radius.circular(20))),
                     child: Image.asset(
                       'assets/images/google_logo.png',
                     ), //google logo

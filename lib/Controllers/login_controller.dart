@@ -5,44 +5,51 @@ import '../Views/Teachers/teacher_dashboard.dart';
 import '../Views/admin_dashboard.dart';
 import '../global/components/toast_message.dart';
 
-class LoginController{
-
+class LoginController {
   Database? db;
-  
-  LoginController(){
-    db= Database();
+
+  LoginController() {
+    db = Database();
   }
 
-  Future<void> getLogin(BuildContext context, String email, String password) async {
-    final tableDatas = await db!.getData("super_admin");
-    tableDatas.forEach((DatabaseEvent event) {
-      for (DataSnapshot child in event.snapshot.children) {
-        //for finding unique id
-        //print(child.key);
+  Future<void> getLogin(
+      BuildContext context, String email, String password, String user) async {
+    if (user == "students") {
+      getLoginAsStudent(context, email, password);
+    } else if (user == "teachers") {
+      getLoginAsTeacher(context, email, password);
+    } else {
+      final tableDatas = await db!.getData("super_admin");
+      tableDatas.forEach((DatabaseEvent event) {
+        for (DataSnapshot child in event.snapshot.children) {
+          //for finding unique id
+          //print(child.key);
 
-        //get sub-children of unique id
-        Map<dynamic, dynamic> data = child.value as Map<dynamic, dynamic>;
+          //get sub-children of unique id
+          Map<dynamic, dynamic> data = child.value as Map<dynamic, dynamic>;
 
-        if (data['email'] == email && data['password'] == password) {
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (builder) => AdminDashboard(
-                        email: email,
-                      )));
-          break;
-        }else{
-          ToastMessage(context: context, message: "Incorrect Email or Password", type: "error").show();
+          if (data['email'] == email && data['password'] == password) {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (builder) => AdminDashboard(
+                          email: email,
+                        )));
+            break;
+          } else {
+            ToastMessage(
+                    context: context,
+                    message: "Incorrect Email or Password",
+                    type: "error")
+                .show();
+          }
         }
-      }
-
-      
-    });
-
-    getLoginAsTeacher(context, email, password);
+      });
+    }
   }
 
-  Future<void> getLoginAsTeacher(BuildContext context, String email, String password) async {
+  Future<void> getLoginAsTeacher(
+      BuildContext context, String email, String password) async {
     final tableDatas = await db!.getData("teachers");
     tableDatas.forEach((DatabaseEvent event) {
       for (DataSnapshot child in event.snapshot.children) {
@@ -60,15 +67,20 @@ class LoginController{
                         email: email,
                       )));
           break;
-        }else{
+        } else {
           //getLoginAsStudent(context, email, password);
-          ToastMessage(context: context, message: "Incorrect Email or Password", type: "error").show();
+          ToastMessage(
+                  context: context,
+                  message: "Incorrect Email or Password",
+                  type: "error")
+              .show();
         }
       }
     });
   }
 
-  Future<void> getLoginAsStudent(BuildContext context, String email, String password) async {
+  Future<void> getLoginAsStudent(
+      BuildContext context, String email, String password) async {
     final tableDatas = await db!.getData("students");
     tableDatas.forEach((DatabaseEvent event) {
       for (DataSnapshot child in event.snapshot.children) {
@@ -86,8 +98,12 @@ class LoginController{
                         email: email,
                       )));
           break;
-        }else{
-          ToastMessage(context: context, message: "Incorrect Email or Password", type: "error").show();
+        } else {
+          ToastMessage(
+                  context: context,
+                  message: "Incorrect Email or Password",
+                  type: "error")
+              .show();
         }
       }
     });

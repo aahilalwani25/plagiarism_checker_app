@@ -7,43 +7,11 @@ class NewStudent with ChangeNotifier {
   String? _gender;
   String? _username;
   String? _country;
+  String? _country_code;
   String? _state;
   String? _city;
 
-  NewStudent(
-      {String? email,
-      String? password,
-      String? phone,
-      String? gender,
-      String? username,
-      String? country,
-      String? state,
-      String? city}) {
-    if (email != null) {
-      this._email = email;
-    }
-    if (password != null) {
-      this._password = password;
-    }
-    if (phone != null) {
-      this._phone = phone;
-    }
-    if (gender != null) {
-      this._gender = gender;
-    }
-    if (username != null) {
-      this._username = username;
-    }
-    if (country != null) {
-      this._country = country;
-    }
-    if (state != null) {
-      this._state = state;
-    }
-    if (city != null) {
-      this._city = city;
-    }
-  }
+  NewStudent();
 
   String? get email => _email;
   void setEmail(String? email) {
@@ -92,6 +60,13 @@ class NewStudent with ChangeNotifier {
     _city = city;
     notifyListeners();
   }
+
+  String? get country_code => _country_code;
+  void setCountryCode(String? code) {
+    _country_code = code;
+    notifyListeners();
+  }
+
 
   NewStudent.fromJson(Map<String, dynamic> json) {
     _email = json['email'];
