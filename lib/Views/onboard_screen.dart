@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -58,7 +59,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
                           Icon(Icons.skip_next),
-                          Text("Get Started")
+                          AutoSizeText("Get Started")
                         ],
                       ),
                     ),
@@ -82,7 +83,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Icon(Icons.skip_next),
-                              Text("Skip")
+                              AutoSizeText("Skip")
                             ],
                           ),
                         ),
@@ -104,7 +105,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Icon(Icons.skip_next),
-                              Text("Next")
+                              AutoSizeText("Next")
                             ],
                           ),
                         ),
@@ -136,7 +137,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                         child: Image.asset(onboard_contents[index].image)),
                     SizedBox(
                       width: screen.width! * 0.7,
-                      child: Text(
+                      child: AutoSizeText(
                         onboard_contents[index].title,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
@@ -145,7 +146,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     ),
                     SizedBox(
                       width: screen.width! * 0.9,
-                      child: Text(
+                      child: AutoSizeText(
                         onboard_contents[index].description,
                         textAlign: TextAlign.center,
                         style: const TextStyle(

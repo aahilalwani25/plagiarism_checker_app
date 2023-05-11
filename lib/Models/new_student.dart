@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
 
+import 'countries.dart';
+
 class NewStudent with ChangeNotifier {
-  bool _password_visible=false, _c_password_visible=false;
+  bool _password_visible=true, _c_password_visible=true;
   String? _email;
   String? _password;
   String? _phone;
@@ -9,8 +11,7 @@ class NewStudent with ChangeNotifier {
   String? _username;
   String? _country;
   String? _country_code;
-  String? _state;
-  String? _city;
+
 
   NewStudent();
 
@@ -57,26 +58,14 @@ class NewStudent with ChangeNotifier {
   }
 
   String? get country => _country;
-  void setCountry(String? country) {
-    _country = country;
-    notifyListeners();
-  }
-
-  String? get state => _state;
-  void setState(String? state) {
-    _state = state;
-    notifyListeners();
-  }
-
-  String? get city => _city;
-  void setCity(String? city) {
-    _city = city;
+  void setCountry(Countries? country) {
+    _country = country!.countryName;
     notifyListeners();
   }
 
   String? get country_code => _country_code;
-  void setCountryCode(String? code) {
-    _country_code = code;
+  void setCountryCode(Countries? country) {
+    _country_code = country!.countryCode;
     notifyListeners();
   }
 }

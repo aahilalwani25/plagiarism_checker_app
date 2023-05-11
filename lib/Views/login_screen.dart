@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
@@ -18,7 +19,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     //bool is_loading = false;
-    Screen screen = Screen(context: context);
+    //Screen screen = Screen(context: context);
+    //Styles styles= Styles(context: context);
     final formKey = GlobalKey<FormState>();
     bool remember_me = false;
     RoundedLoadingButtonController roundedLoadingButtonController =
@@ -27,14 +29,14 @@ class _LoginScreenState extends State<LoginScreen> {
     print('build');
     return Scaffold(
         body: Consumer<LoginModel>(builder: (builder, loginModel, child) {
-      return Form(
+            return Form(
           key: formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Padding(
                 padding: EdgeInsets.all(18),
-                child: Text(
+                child: AutoSizeText(
                   'LOGIN',
                   style: TextStyle(
                       color: Colors.green,
@@ -99,11 +101,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         checkColor: Colors.white,
                         focusColor: Colors.green,
                       ),
-                      const Text('Remember Me'),
+                      const AutoSizeText('Remember Me'),
                     ],
                   ),
                   GestureDetector(
-                    child: const Text('Forgot Password'),
+                    child: const AutoSizeText('Forgot Password'),
                   )
                 ],
               ),
@@ -121,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         LoginController loginController = LoginController();
-
+          
                         loginController.getLogin(context, loginModel.email,
                             loginModel.password, widget.user);
                       }
@@ -129,11 +131,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         roundedLoadingButtonController.reset();
                       });
                     },
-                    child: const Text('LOGIN')),
+                    child: const AutoSizeText('LOGIN')),
               ),
               const Padding(
                 padding: EdgeInsets.only(top: 16.0),
-                child: Text('Or Continue With'),
+                child: AutoSizeText('Or Continue With'),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -167,6 +169,6 @@ class _LoginScreenState extends State<LoginScreen> {
               )
             ],
           ));
-    }));
+          }));
   }
 }

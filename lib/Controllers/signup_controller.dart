@@ -72,10 +72,5 @@ class SignupController {
 
     return val;
   }
-
-
-  void googleSignup(){
-    //FirebaseAuth auth= FirebaseAuth.instance;
-    
-  }
+  
 }

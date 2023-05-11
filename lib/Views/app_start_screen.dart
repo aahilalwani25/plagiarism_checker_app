@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/animation/animation_controller.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -41,7 +42,7 @@ class _AppStartScreenState extends State<AppStartScreen>
           child: Column(
             children: [
               const Center(
-                child: Text(
+                child: AutoSizeText(
                   "Welcome to Plagiarism Checker",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -56,7 +57,7 @@ class _AppStartScreenState extends State<AppStartScreen>
                     Navigator.push(context, MaterialPageRoute(builder: (builder)=>LoginScreen(user: 'students',)));
                   },
                   style: TextButton.styleFrom(backgroundColor: Colors.green),
-                  child: const Text(
+                  child: const AutoSizeText(
                     "Login as Student",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
@@ -65,7 +66,7 @@ class _AppStartScreenState extends State<AppStartScreen>
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  const AutoSizeText(
                     "New Student? ",
                     style: TextStyle(fontSize: 15),
                   ),
@@ -73,7 +74,7 @@ class _AppStartScreenState extends State<AppStartScreen>
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (builder)=>SignupScreen(user: 'students',)));
                     },
-                    child: const Text(
+                    child: const AutoSizeText(
                       "Signup",
                       style: TextStyle(fontSize: 15, color: Colors.green, fontWeight: FontWeight.bold),
                     ),
@@ -89,7 +90,7 @@ class _AppStartScreenState extends State<AppStartScreen>
                     Navigator.push(context, MaterialPageRoute(builder: (builder)=>LoginScreen(user: 'teachers',)));
                   },
                   style: TextButton.styleFrom(backgroundColor: Colors.green),
-                  child: const Text(
+                  child: const AutoSizeText(
                     "Login as Teacher",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
@@ -98,7 +99,7 @@ class _AppStartScreenState extends State<AppStartScreen>
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  const AutoSizeText(
                     "New Teacher? ",
                     style: TextStyle(fontSize: 15),
                   ),
@@ -106,7 +107,7 @@ class _AppStartScreenState extends State<AppStartScreen>
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (builder)=>SignupScreen(user: 'teachers',)));
                     },
-                    child: const Text(
+                    child: const AutoSizeText(
                       "Signup",
                       style: TextStyle(
                           fontSize: 15,
