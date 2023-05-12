@@ -45,7 +45,7 @@ class _AppStartScreenState extends State<AppStartScreen>
                 child: AutoSizeText(
                   "Welcome to Plagiarism Checker",
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ),
               Container(

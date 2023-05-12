@@ -122,10 +122,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     successColor: Colors.green,
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-                        LoginController loginController = LoginController();
+                        LoginController loginController = LoginController(
+                            context: context,
+                            email: loginModel.email,
+                            password:loginModel.password,
+                            user: widget.user);
           
-                        loginController.getLogin(context, loginModel.email,
-                            loginModel.password, widget.user);
+                        loginController.getLogin();
                       }
                       Future.delayed(const Duration(seconds: 2), () {
                         roundedLoadingButtonController.reset();

@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../Controllers/plagiarism_controller.dart';
-import '../Models/content.dart';
+import '../../Controllers/plagiarism_controller.dart';
+import '../../Models/content.dart';
 //import '../python/plag_agent.py';
 
-import '../global/components/textbox.dart';
+import '../../global/components/textbox.dart';
 
-class MainDashboard extends StatefulWidget {
-  const MainDashboard({super.key});
+class StudentMainDashboard extends StatefulWidget {
+  String email;
+  StudentMainDashboard({super.key, required this.email});
 
   @override
-  State<MainDashboard> createState() => _MainDashboardState();
+  State<StudentMainDashboard> createState() => _StudentMainDashboardState();
 }
 
-class _MainDashboardState extends State<MainDashboard> {
+class _StudentMainDashboardState extends State<StudentMainDashboard> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final CustomTextBox _customTextBox = CustomTextBox();
 
@@ -82,26 +83,27 @@ class _MainDashboardState extends State<MainDashboard> {
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
                     height: MediaQuery.of(context).size.height * 0.05,
-                    child: ElevatedButton(
-                      
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            content.setEnabled(false);
-                            PlagiarismController pc =
-                                PlagiarismController(text: content.content!);
-                            content.setPlagiarised(await pc.start_check());
-                            content.setEnabled(true);
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                               content.enabled? Colors.green: Colors.green[300],
-                        ),
-                        child: Center(
-                            child: content.enabled? const Text(
-                          "Submit",
-                        ): const CircularProgressIndicator(color: Colors.white, strokeWidth: 2,)),
-                      ),
+                    child: ActionChip(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          content.setEnabled(false);
+                          PlagiarismController pc =
+                              PlagiarismController(text: content.content!);
+                          content.setPlagiarised(await pc.start_check());
+                          content.setEnabled(true);
+                        }
+                      },
+                      backgroundColor: content.enabled ? Colors.green : Colors.green[300],
+                      label: Center(
+                          child: content.enabled
+                              ? const Text(
+                                  "Submit",
+                                )
+                              : const CircularProgressIndicator(
+                                  color: Colors.white,
+                                  strokeWidth: 2,
+                                )),
+                    ),
                   ),
                 ),
                 content.plagiarised!=null? Padding(

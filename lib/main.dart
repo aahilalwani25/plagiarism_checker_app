@@ -6,7 +6,7 @@ import 'Models/new_student.dart';
 import 'Models/onboard_contents.dart';
 import 'Views/app_start_screen.dart';
 import 'Views/onboard_screen.dart';
-import 'Views/user_main_dashboard.dart';
+import 'Views/Students/student_main_dashboard.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async{

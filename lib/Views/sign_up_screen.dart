@@ -8,8 +8,10 @@ import 'package:plagiarism_checker_app/global/components/toast_message.dart';
 import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../Controllers/auth_controller.dart';
+import '../Controllers/countries_controller.dart';
 import '../Models/countries.dart';
 import '../global/components/Screen.dart';
+import 'login_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   String user;
@@ -22,30 +24,27 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   String country_code = "+92";
   Screen? screen;
-  
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
-
   }
 
   @override
   Widget build(BuildContext context) {
-    
     if (widget.user == "students") {
       return studentSignup();
     }
     return teacherSignup();
   }
 
-  Countries countries= Countries();
+  Countries countries = Countries();
   Widget studentSignup() {
     GlobalKey<FormState> form_key = GlobalKey<FormState>();
     RoundedLoadingButtonController roundedLoadingButtonController =
         RoundedLoadingButtonController();
-    
+    CountriesController countriesController = CountriesController();
 
     return Scaffold(
       body: SafeArea(
@@ -91,7 +90,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
 
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 10),
                         child: TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           onChanged: (email) {
@@ -128,7 +128,6 @@ class _SignupScreenState extends State<SignupScreen> {
                                 new_student.setCountry(countries);
                               },
                               initialSelection: 'pk',
-                              
                             ),
                           ),
                           SizedBox(
@@ -137,16 +136,18 @@ class _SignupScreenState extends State<SignupScreen> {
                               keyboardType: TextInputType.phone,
                               onChanged: (phone) {
                                 new_student.setPhone(
-                                    '${new_student.country_code??countries.countryCode}$phone');
+                                    '${new_student.country_code ?? countries}$phone');
                               },
                               validator: (email) => email!.isEmpty
                                   ? "Please enter Phone Number"
                                   : null,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
+                                  prefixText: new_student.country_code ??
+                                      countries.countryCode,
                                   labelText: "Phone Number *",
-                                  prefixIcon: Icon(Icons.phone),
+                                  prefixIcon: const Icon(Icons.phone),
                                   hintText: "Enter your Phone Number *",
-                                  border: OutlineInputBorder(
+                                  border: const OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),
                                   )),
@@ -235,7 +236,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                         new_student.email!,
                                         new_student.phone!,
                                         new_student.username!,
-                                        new_student.country??countries.countryName,
+                                        new_student.country ??
+                                            countries.countryName,
                                         new_student.password!)
                                     .then((value) {
                                   if (value) {
@@ -244,6 +246,14 @@ class _SignupScreenState extends State<SignupScreen> {
                                             message: "Successsfully signed up",
                                             type: "success")
                                         .show();
+                                    //goto login
+                                    // ignore: use_build_context_synchronously
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (builder) => LoginScreen(
+                                                  user: 'students',
+                                                )));
                                   }
                                 });
                               }
@@ -267,14 +277,28 @@ class _SignupScreenState extends State<SignupScreen> {
                           GestureDetector(
                             onTap: () async {
                               try {
-                                UserCredential credentials = await AuthController.signupWithGoogle();
+                                UserCredential credentials =
+                                    await AuthController.signupWithGoogle();
 
-                                if(credentials.credential!.providerId!=null){
+                                // ignore: unnecessary_null_comparison
+                                if (credentials.credential!.providerId !=
+                                    null) {
+                                  // ignore: use_build_context_synchronously
                                   ToastMessage(
                                       context: context,
                                       message: "Signed up Successfully",
                                       type: "success");
-                                }else{
+
+                                  //goto login
+                                  // ignore: use_build_context_synchronously
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (builder) => LoginScreen(
+                                                user: 'students',
+                                              )));
+                                } else {
+                                  // ignore: use_build_context_synchronously
                                   ToastMessage(
                                       context: context,
                                       message: "Signed up failed",
@@ -283,7 +307,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               } on Exception catch (e) {
                                 ToastMessage(
                                     context: context,
-                                    message: "Signed up failed: ${e}",
+                                    message: "Signed up failed: $e",
                                     type: "error");
                               }
                             },
