@@ -77,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onTap: () {
                             loginModel.setPasswordVisible(!loginModel.password_visible);
                           },
-                          child: const Icon(Icons.remove_red_eye_sharp),
+                          child: !loginModel.password_visible? const Icon(Icons.visibility): const Icon(Icons.visibility_off),
                         ),
                         border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10)),

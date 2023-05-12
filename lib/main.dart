@@ -3,6 +3,7 @@ import 'package:plagiarism_checker_app/Models/content.dart';
 import 'package:provider/provider.dart';
 import 'Models/login_model.dart';
 import 'Models/new_student.dart';
+import 'Views/Students/student_main_dashboard.dart';
 import 'Views/app_start_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<NewStudent>(create: (_) => NewStudent()),
         ChangeNotifierProvider<Content>(create: (_)=>Content()),
         ChangeNotifierProvider<LoginModel>(create: (_)=>LoginModel()),
+        ChangeNotifierProvider<ChangePage>(create: (_) => ChangePage()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

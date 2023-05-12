@@ -178,7 +178,9 @@ class _SignupScreenState extends State<SignupScreen> {
                                     newStudent.setPasswordVisible(
                                         !newStudent.password_visible);
                                   },
-                                  child: const Icon(Icons.remove_red_eye_sharp),
+                                  child: !newStudent.password_visible
+                                      ? const Icon(Icons.visibility)
+                                      : const Icon(Icons.visibility_off),
                                 ),
                                 border: const OutlineInputBorder(
                                     borderRadius:
@@ -206,7 +208,9 @@ class _SignupScreenState extends State<SignupScreen> {
                                     newStudent.setConfirmPasswordVisible(
                                         !newStudent.c_password_invisible);
                                   },
-                                  child: const Icon(Icons.remove_red_eye_sharp),
+                                  child: !newStudent.password_visible
+                                      ? const Icon(Icons.visibility)
+                                      : const Icon(Icons.visibility_off),
                                 ),
                                 border: const OutlineInputBorder(
                                     borderRadius:

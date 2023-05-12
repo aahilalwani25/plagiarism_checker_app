@@ -21,7 +21,8 @@ class Database {
     _databaseReference ??= _db!.ref('/$tableName');
 
     //if snapshot is null, then initialize it
-    DataSnapshot snapshot = await _databaseReference!.get();
+    //DataSnapshot snapshot= await _databaseReference!.get();
+    
     return _databaseReference!.onValue;
   }
 
