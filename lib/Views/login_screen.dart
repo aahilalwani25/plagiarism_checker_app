@@ -1,14 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../Controllers/login_controller.dart';
+import '../Models/content.dart';
 import '../Models/login_model.dart';
-import '../global/components/Screen.dart';
 
 
 class LoginScreen extends StatefulWidget {
-  String user;
+  final String user;
   LoginScreen({super.key, required this.user});
 
   @override
@@ -22,9 +21,9 @@ class _LoginScreenState extends State<LoginScreen> {
     //Screen screen = Screen(context: context);
     //Styles styles= Styles(context: context);
     final formKey = GlobalKey<FormState>();
-    bool remember_me = false;
-    RoundedLoadingButtonController roundedLoadingButtonController =
-        RoundedLoadingButtonController();
+    //bool rememberMe = false;
+
+    Content content= Content();
 
     print('build');
     return Scaffold(
@@ -115,26 +114,34 @@ class _LoginScreenState extends State<LoginScreen> {
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(30))),
                 padding: const EdgeInsets.all(16),
-                child: RoundedLoadingButton(
-                    color: Colors.green,
-                    controller: roundedLoadingButtonController,
-                    errorColor: Colors.red,
-                    successColor: Colors.green,
-                    onPressed: () {
+                child: AbsorbPointer(
+                  absorbing: content.enabled ? false : true,
+                  child: ActionChip(
+                    onPressed: () async {
                       if (formKey.currentState!.validate()) {
                         LoginController loginController = LoginController(
                             context: context,
                             email: loginModel.email,
-                            password:loginModel.password,
+                            password: loginModel.password,
                             user: widget.user);
-          
+
                         loginController.getLogin();
                       }
-                      Future.delayed(const Duration(seconds: 2), () {
-                        roundedLoadingButtonController.reset();
-                      });
+                      
                     },
-                    child: const AutoSizeText('LOGIN')),
+                    backgroundColor:
+                        content.enabled ? Colors.green : Colors.green[300],
+                    label: Center(
+                        child: content.enabled
+                            ? const Text(
+                                "Login",
+                              )
+                            : const CircularProgressIndicator(
+                                color: Colors.white,
+                                strokeWidth: 2,
+                              )),
+                  ),
+                ),
               ),
               const Padding(
                 padding: EdgeInsets.only(top: 16.0),
@@ -161,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: BoxDecoration(
                         border: Border.all(
                             color: const Color.fromARGB(255, 194, 194, 194)),
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                        borderRadius: const BorderRadius.all(Radius.circular(20))),
                     child: Image.asset(
                       'assets/images/facebook_logo.png',
                       cacheWidth: 50,

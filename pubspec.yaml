@@ -40,7 +40,6 @@ dependencies:
   firebase_database: ^10.1.0
   firebase_core: ^2.9.0
   flython: ^0.2.0
-  rounded_loading_button: ^2.1.0
   image_picker: ^0.8.7+3
   fluttertoast: ^8.2.1
   smooth_page_indicator: ^1.1.0

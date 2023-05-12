@@ -9,7 +9,7 @@ class CustomTextBox {
       icon: icon??icon,
       fillColor: fillColor,
       hintText: text,
-      hintStyle: TextStyle()
+      hintStyle: const TextStyle()
     );
   }
 }

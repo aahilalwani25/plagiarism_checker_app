@@ -32,13 +32,13 @@ import 'view_teachers.dart';
 
 Widget AdminDrawer(BuildContext context, Screen screen, String email) {
 
-  bool teacher_list_dropdown= false;
+  
   print('object');
   return Drawer(
     child: Column(
       children: [
         DrawerHeader(
-            child: Container(
+            child: SizedBox(
           width: screen.width,
           height: screen.height! * 0.5,
           child: Text(email),
@@ -55,28 +55,28 @@ Widget AdminDrawer(BuildContext context, Screen screen, String email) {
         //teacher_list_dropdown==true?Teacher_List():const Padding(padding: EdgeInsets.all(0.1)),
         ListTile(
           onTap: () {},
-          leading: Icon(Icons.attach_money),
+          leading: const Icon(Icons.attach_money),
           title: const Text('Manage Subscription'),
         ),
 
         ListTile(
           onTap: (){},
-          leading: Icon(Icons.receipt),
+          leading: const Icon(Icons.receipt),
           title: const Text('Manage Reports'),
         ),
         ListTile(
           onTap: () {},
-          leading: Icon(Icons.table_chart),
+          leading: const Icon(Icons.table_chart),
           title: const Text('Manage Database'),
         ),
         ListTile(
           onTap: () {},
-          leading: Icon(Icons.map_rounded),
+          leading: const Icon(Icons.map_rounded),
           title: const Text('Countries Visibility'),
         ),
         ListTile(
           onTap: () {},
-          leading: Icon(Icons.chat_rounded),
+          leading: const Icon(Icons.chat_rounded),
           title: const Text('Chats'),
         ),
       ],

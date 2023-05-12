@@ -5,7 +5,7 @@ class TeacherDashboard extends StatelessWidget {
   const TeacherDashboard({super.key, required this.email});
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return  const MaterialApp(
       home: MainTeacherHomePage(),
     );
   }

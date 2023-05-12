@@ -15,14 +15,14 @@ class CountriesController{
     });
   }
 
-  Future<List<Map<String, String>>> getCountries() async{
+  Future<List<Map<dynamic, dynamic>>> getCountries() async{
     Stream<DatabaseEvent> stream= await db!.getData('countries');
-    Map<String, String> countries = <String, String>{};
-    List<Map<String, String>> countriesList=[];
+    List<Map<dynamic, dynamic>> countriesList=[];
     stream.forEach((element) { 
       for(var country in element.snapshot.children){
-        countries.addEntries(countries.entries);
-        countriesList.add(countries);
+        //get sub-children of unique id
+        Map<dynamic, dynamic> data = country.value as Map<dynamic, dynamic>;
+        countriesList.add(data);
       }
     });
 

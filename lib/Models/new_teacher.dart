@@ -22,31 +22,31 @@ class NewTeacher with ChangeNotifier {
       String? state,
       String? city}) {
     if (email != null) {
-      this._email = email;
+      _email = email;
     }
     if (post != null) {
-      this._post = post;
+      _post = post;
     }
     if (password != null) {
-      this._password = password;
+      _password = password;
     }
     if (phone != null) {
-      this._phone = phone;
+      _phone = phone;
     }
     if (gender != null) {
-      this._gender = gender;
+      _gender = gender;
     }
     if (username != null) {
-      this._username = username;
+      _username = username;
     }
     if (country != null) {
-      this._country = country;
+      _country = country;
     }
     if (state != null) {
-      this._state = state;
+      _state = state;
     }
     if (city != null) {
-      this._city = city;
+      _city = city;
     }
   }
 
@@ -82,16 +82,16 @@ class NewTeacher with ChangeNotifier {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['email'] = this._email;
-    data['post'] = this._post;
-    data['password'] = this._password;
-    data['phone'] = this._phone;
-    data['gender'] = this._gender;
-    data['username'] = this._username;
-    data['country'] = this._country;
-    data['State'] = this._state;
-    data['City'] = this._city;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['email'] = _email;
+    data['post'] = _post;
+    data['password'] = _password;
+    data['phone'] = _phone;
+    data['gender'] = _gender;
+    data['username'] = _username;
+    data['country'] = _country;
+    data['State'] = _state;
+    data['City'] = _city;
     return data;
   }
 }

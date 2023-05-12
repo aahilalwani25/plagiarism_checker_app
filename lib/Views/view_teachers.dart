@@ -26,10 +26,10 @@ class _ViewTeachersState extends State<ViewTeachers> {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
         appBar: AppBar(
-            title: Text('Manage Teachers'),
+            title: const Text('Manage Teachers'),
             backgroundColor: Colors.green,
             actions: [
               IconButton(

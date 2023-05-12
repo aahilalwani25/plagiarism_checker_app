@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:plagiarism_checker_app/global/components/Screen.dart';
 
 import 'admin_drawer.dart';
@@ -21,7 +19,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
     return Scaffold(
       appBar: AppBar(),
       drawer: AdminDrawer(context, screen, widget.email),
-      body: Column(
+      body: const Column(
 
       ),
     );

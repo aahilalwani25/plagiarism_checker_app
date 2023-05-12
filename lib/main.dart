@@ -3,10 +3,7 @@ import 'package:plagiarism_checker_app/Models/content.dart';
 import 'package:provider/provider.dart';
 import 'Models/login_model.dart';
 import 'Models/new_student.dart';
-import 'Models/onboard_contents.dart';
 import 'Views/app_start_screen.dart';
-import 'Views/onboard_screen.dart';
-import 'Views/Students/student_main_dashboard.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async{
@@ -36,7 +33,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.green,
           primarySwatch: Colors.blue,
         ),
-        home: AppStartScreen(),
+        home: const AppStartScreen(),
       ),
     );
   }

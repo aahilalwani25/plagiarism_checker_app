@@ -7,8 +7,8 @@ class LoginModel with ChangeNotifier{
   bool _password_visible = false;
 
   bool get password_visible => _password_visible;
-  void setPasswordVisible(bool password_visible) {
-    _password_visible = password_visible;
+  void setPasswordVisible(bool passwordVisible) {
+    _password_visible = passwordVisible;
     notifyListeners();
   }
   
@@ -23,8 +23,8 @@ class LoginModel with ChangeNotifier{
     notifyListeners();
   }
 
-  void changeRememberMe(bool remember_me){
-    _remember_me=remember_me;
+  void changeRememberMe(bool rememberMe){
+    _remember_me=rememberMe;
     notifyListeners();
   }
 

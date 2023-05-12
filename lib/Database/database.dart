@@ -1,6 +1,4 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/foundation.dart';
-import 'package:plagiarism_checker_app/Models/login_model.dart';
 
 class Database {
   FirebaseDatabase? _db;
@@ -23,7 +21,7 @@ class Database {
     _databaseReference ??= _db!.ref('/$tableName');
 
     //if snapshot is null, then initialize it
-    DataSnapshot _snapshot = await _databaseReference!.get();
+    DataSnapshot snapshot = await _databaseReference!.get();
     return _databaseReference!.onValue;
   }
 

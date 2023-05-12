@@ -6,15 +6,16 @@ import 'package:plagiarism_checker_app/Controllers/signup_controller.dart';
 import 'package:plagiarism_checker_app/Models/new_student.dart';
 import 'package:plagiarism_checker_app/global/components/toast_message.dart';
 import 'package:provider/provider.dart';
-import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../Controllers/auth_controller.dart';
-import '../Controllers/countries_controller.dart';
+//import '../Controllers/countries_controller.dart';
+import '../Models/content.dart';
 import '../Models/countries.dart';
 import '../global/components/Screen.dart';
 import 'login_screen.dart';
 
+
 class SignupScreen extends StatefulWidget {
-  String user;
+  final String user;
   SignupScreen({super.key, required this.user});
 
   @override
@@ -41,18 +42,19 @@ class _SignupScreenState extends State<SignupScreen> {
 
   Countries countries = Countries();
   Widget studentSignup() {
-    GlobalKey<FormState> form_key = GlobalKey<FormState>();
-    RoundedLoadingButtonController roundedLoadingButtonController =
-        RoundedLoadingButtonController();
-    CountriesController countriesController = CountriesController();
+    GlobalKey<FormState> formKey = GlobalKey<FormState>();
+    
+    //CountriesController countriesController = CountriesController();
+
+    Content content = Content();
 
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Consumer<NewStudent>(
-            builder: (builder, new_student, child) {
+            builder: (builder, newStudent, child) {
               return Form(
-                key: form_key,
+                key: formKey,
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,7 +76,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         child: TextFormField(
                           keyboardType: TextInputType.name,
                           onChanged: (email) {
-                            new_student.setUsername(email);
+                            newStudent.setUsername(email);
                           },
                           validator: (email) =>
                               email!.isEmpty ? "Please enter Username" : null,
@@ -95,7 +97,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         child: TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           onChanged: (email) {
-                            new_student.setEmail(email);
+                            newStudent.setEmail(email);
                           },
                           validator: (email) =>
                               email!.isEmpty ? "Please enter Email" : null,
@@ -120,12 +122,12 @@ class _SignupScreenState extends State<SignupScreen> {
                                 color: Colors.grey,
                               ),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
+                                  const BorderRadius.all(Radius.circular(10)),
                             ),
                             child: CountryCodePicker(
                               onChanged: (code) {
-                                new_student.setCountryCode(countries);
-                                new_student.setCountry(countries);
+                                newStudent.setCountryCode(countries);
+                                newStudent.setCountry(countries);
                               },
                               initialSelection: 'pk',
                             ),
@@ -135,14 +137,14 @@ class _SignupScreenState extends State<SignupScreen> {
                             child: TextFormField(
                               keyboardType: TextInputType.phone,
                               onChanged: (phone) {
-                                new_student.setPhone(
-                                    '${new_student.country_code ?? countries}$phone');
+                                newStudent.setPhone(
+                                    '${newStudent.country_code ?? countries}$phone');
                               },
                               validator: (email) => email!.isEmpty
                                   ? "Please enter Phone Number"
                                   : null,
                               decoration: InputDecoration(
-                                  prefixText: new_student.country_code ??
+                                  prefixText: newStudent.country_code ??
                                       countries.countryCode,
                                   labelText: "Phone Number *",
                                   prefixIcon: const Icon(Icons.phone),
@@ -160,9 +162,9 @@ class _SignupScreenState extends State<SignupScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 16.0, vertical: 10),
                         child: TextFormField(
-                            obscureText: new_student.password_visible,
+                            obscureText: newStudent.password_visible,
                             onChanged: (password) {
-                              new_student.setPassword(password);
+                              newStudent.setPassword(password);
                             },
                             validator: (password) => password!.isEmpty
                                 ? "Please enter Password"
@@ -173,8 +175,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                 hintText: "Enter your Password *",
                                 suffixIcon: GestureDetector(
                                   onTap: () {
-                                    new_student.setPasswordVisible(
-                                        !new_student.password_visible);
+                                    newStudent.setPasswordVisible(
+                                        !newStudent.password_visible);
                                   },
                                   child: const Icon(Icons.remove_red_eye_sharp),
                                 ),
@@ -189,10 +191,10 @@ class _SignupScreenState extends State<SignupScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 16.0, vertical: 10),
                         child: TextFormField(
-                            obscureText: new_student.c_password_invisible,
+                            obscureText: newStudent.c_password_invisible,
                             validator: (password) => password!.isEmpty
                                 ? "Please enter Password"
-                                : new_student.password != password
+                                : newStudent.password != password
                                     ? "Password and confirm Password does not match"
                                     : null,
                             decoration: InputDecoration(
@@ -201,8 +203,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                 hintText: "Enter your Confirm Password *",
                                 suffixIcon: GestureDetector(
                                   onTap: () {
-                                    new_student.setConfirmPasswordVisible(
-                                        !new_student.c_password_invisible);
+                                    newStudent.setConfirmPasswordVisible(
+                                        !newStudent.c_password_invisible);
                                   },
                                   child: const Icon(Icons.remove_red_eye_sharp),
                                 ),
@@ -222,23 +224,21 @@ class _SignupScreenState extends State<SignupScreen> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(30))),
                         padding: const EdgeInsets.all(16),
-                        child: RoundedLoadingButton(
-                            color: Colors.green,
-                            controller: roundedLoadingButtonController,
-                            errorColor: Colors.red,
-                            successColor: Colors.green,
-                            onPressed: () {
-                              if (form_key.currentState!.validate()) {
+                        child: AbsorbPointer(
+                          absorbing: content.enabled ? false : true,
+                          child: ActionChip(
+                            onPressed: () async {
+                              if (formKey.currentState!.validate()) {
                                 SignupController signupController =
                                     SignupController(context: context);
                                 signupController
                                     .signup(
-                                        new_student.email!,
-                                        new_student.phone!,
-                                        new_student.username!,
-                                        new_student.country ??
+                                        newStudent.email!,
+                                        newStudent.phone!,
+                                        newStudent.username!,
+                                        newStudent.country ??
                                             countries.countryName,
-                                        new_student.password!)
+                                        newStudent.password!)
                                     .then((value) {
                                   if (value) {
                                     ToastMessage(
@@ -257,14 +257,22 @@ class _SignupScreenState extends State<SignupScreen> {
                                   }
                                 });
                               }
-                              Future.delayed(const Duration(seconds: 2), () {
-                                roundedLoadingButtonController.reset();
-                              });
+                              
                             },
-                            child: const AutoSizeText(
-                              'SIGN UP',
-                              style: TextStyle(fontSize: 20),
-                            )),
+                            backgroundColor: content.enabled
+                                ? Colors.green
+                                : Colors.green[300],
+                            label: Center(
+                                child: content.enabled
+                                    ? const Text(
+                                        "SIGN UP",
+                                      )
+                                    : const CircularProgressIndicator(
+                                        color: Colors.white,
+                                        strokeWidth: 2,
+                                      )),
+                          ),
+                        ),
                       ),
 
                       const Padding(
@@ -354,6 +362,6 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   Widget teacherSignup() {
-    return Scaffold();
+    return const Scaffold();
   }
 }

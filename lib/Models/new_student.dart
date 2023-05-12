@@ -16,14 +16,14 @@ class NewStudent with ChangeNotifier {
   NewStudent();
 
   bool get password_visible => _password_visible;
-  void setPasswordVisible(bool password_visible) {
-    _password_visible= password_visible;
+  void setPasswordVisible(bool passwordVisible) {
+    _password_visible= passwordVisible;
     notifyListeners();
   }
 
   bool get c_password_invisible => _c_password_visible;
-  void setConfirmPasswordVisible(bool confirm_password_visible) {
-    _c_password_visible = confirm_password_visible;
+  void setConfirmPasswordVisible(bool confirmPasswordVisible) {
+    _c_password_visible = confirmPasswordVisible;
     notifyListeners();
   }
 

@@ -68,7 +68,7 @@ class LoginController {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (builder) => StudentMainDashboard(email: email)));
+                    builder: (builder) => TeacherDashboard(email: email)));
           }
 
           if(user=="super_admin"){

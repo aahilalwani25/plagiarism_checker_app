@@ -13,11 +13,11 @@ class ToastMessage{
 
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason> show(){
     Color backgroundColor= Colors.red;
-    if (this.type=="success"){
+    if (type=="success"){
       backgroundColor= Colors.green;
     }
     
-    if(this.type=="warning"){
+    if(type=="warning"){
       backgroundColor= Colors.yellow;
     }
 
