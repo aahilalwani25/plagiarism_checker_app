@@ -4,16 +4,14 @@ import 'student_home_page.dart';
 import 'student_profile.dart';
 //import 'package:flutter/foundation.dart';
 
-class ChangePage with ChangeNotifier{
-
-  int _selectedIndex=0;
+class ChangePage with ChangeNotifier {
+  int _selectedIndex = 0;
 
   int get selectedIndex => _selectedIndex;
   void onItemTapped(int index) {
     _selectedIndex = index;
     notifyListeners();
   }
-
 }
 
 class StudentMainDashboard extends StatefulWidget {
@@ -25,146 +23,137 @@ class StudentMainDashboard extends StatefulWidget {
 }
 
 class _StudentMainDashboardState extends State<StudentMainDashboard> {
-  
-  ChangePage changePage= ChangePage();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    
-  }
-
+  ChangePage changePage = ChangePage();
 
   @override
   Widget build(BuildContext context) {
     print("build");
     //Content content = Provider.of<Content>(context, listen: false);
-    List<Widget> widget_options = [
-      StudentHomePage(),
-      Text('Chats'),
-      Text('Classroom'),
-      StudentProfile(email: widget.email),
-    ];
+    
     return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: const Icon(
-                  Icons.home,
-                  color: Colors.black,
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: const Icon(
+                Icons.home,
+                color: Colors.black,
+              ),
+              label: '',
+              activeIcon: Container(
+                width: MediaQuery.of(context).size.width * 0.3,
+                height: MediaQuery.of(context).size.width * 0.1,
+                decoration: const BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(Icons.home),
+                    Text(
+                      'Home',
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ],
                 ),
-                label: '',
-                activeIcon: Container(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: MediaQuery.of(context).size.width * 0.1,
-                  decoration: const BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(Icons.home),
-                      Text(
-                        'Home',
-                        style: TextStyle(color: Colors.white),
-                      )
-                    ],
-                  ),
-                )),
-            BottomNavigationBarItem(
-                icon: const Icon(Icons.chat_sharp, color: Colors.black),
-                label: '',
-                activeIcon: Container(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: MediaQuery.of(context).size.width * 0.1,
-                  decoration: const BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(Icons.chat_sharp),
-                      Text(
-                        'Chats',
-                        style: TextStyle(color: Colors.white),
-                      )
-                    ],
-                  ),
-                )),
-            BottomNavigationBarItem(
-                icon: const Icon(
-                  Icons.school,
-                  color: Colors.black,
+              )),
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.chat_sharp, color: Colors.black),
+              label: '',
+              activeIcon: Container(
+                width: MediaQuery.of(context).size.width * 0.3,
+                height: MediaQuery.of(context).size.width * 0.1,
+                decoration: const BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(Icons.chat_sharp),
+                    Text(
+                      'Chats',
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ],
                 ),
-                label: '',
-                activeIcon: Container(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: MediaQuery.of(context).size.width * 0.1,
-                  decoration: const BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(Icons.school),
-                      Text(
-                        'Classes',
-                        style: TextStyle(color: Colors.white),
-                      )
-                    ],
-                  ),
-                )),
-            BottomNavigationBarItem(
-                icon: const Icon(Icons.person, color: Colors.black),
-                label: '',
-                activeIcon: Container(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: MediaQuery.of(context).size.width * 0.1,
-                  decoration: const BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(Icons.person),
-                      Text(
-                        'Profile',
-                        style: TextStyle(color: Colors.white),
-                      )
-                    ],
-                  ),
-                )),
-          ],
-          currentIndex: changePage.selectedIndex,
-          selectedItemColor: Colors.white,
-          onTap: changePage.onItemTapped,
-        ),
-        // drawer: Drawer(
-        //   child: Column(
-        //     children: [
-        //       DrawerHeader(
-        //         decoration: const BoxDecoration(
-        //           color: Colors.green,
-        //         ),
-        //         child: Row(
-        //           mainAxisAlignment: MainAxisAlignment.start,
-        //           children: const [Text('Student Name')],
-        //         ),
-        //       )
-        //     ],
-        //   ),
-        // ),
-        appBar: AppBar(
-          backgroundColor: Colors.green,
-          title: const AutoSizeText('Home'),
-          actions: [
-            IconButton(onPressed: (){}, icon: const Icon(Icons.settings)),
-            IconButton(onPressed: (){}, icon: const Icon(Icons.power_off))
-          ],
-        ),
-        body: Center(child: widget_options.elementAt(changePage.selectedIndex)),
-      );
+              )),
+          BottomNavigationBarItem(
+              icon: const Icon(
+                Icons.school,
+                color: Colors.black,
+              ),
+              label: '',
+              activeIcon: Container(
+                width: MediaQuery.of(context).size.width * 0.3,
+                height: MediaQuery.of(context).size.width * 0.1,
+                decoration: const BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(Icons.school),
+                    Text(
+                      'Classes',
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ],
+                ),
+              )),
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.person, color: Colors.black),
+              label: '',
+              activeIcon: Container(
+                width: MediaQuery.of(context).size.width * 0.3,
+                height: MediaQuery.of(context).size.width * 0.1,
+                decoration: const BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(Icons.person),
+                    Text(
+                      'Profile',
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ],
+                ),
+              )),
+        ],
+        currentIndex: changePage.selectedIndex,
+        selectedItemColor: Colors.white,
+        onTap: changePage.onItemTapped,
+      ),
+      // drawer: Drawer(
+      //   child: Column(
+      //     children: [
+      //       DrawerHeader(
+      //         decoration: const BoxDecoration(
+      //           color: Colors.green,
+      //         ),
+      //         child: Row(
+      //           mainAxisAlignment: MainAxisAlignment.start,
+      //           children: const [Text('Student Name')],
+      //         ),
+      //       )
+      //     ],
+      //   ),
+      // ),
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: const AutoSizeText('Home'),
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.settings)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.power_off))
+        ],
+      ),
+      body: changePage._selectedIndex == 0
+          ? StudentHomePage()
+          : changePage.selectedIndex == 1
+              ? Text('Chats')
+              : changePage.selectedIndex == 2
+                  ? Text('Classes')
+                  : StudentProfile(email: widget.email),
+    );
   }
 }

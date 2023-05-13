@@ -113,6 +113,27 @@ class _AppStartScreenState extends State<AppStartScreen>
                   ),
                 ],
               ),
+
+              Container(
+                padding: const EdgeInsets.only(top: 30, bottom: 10),
+                width: screen.width! * 0.8,
+                height: screen.height! * 0.1,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (builder) => LoginScreen(
+                                  user: 'super_admin',
+                                )));
+                  },
+                  style: TextButton.styleFrom(backgroundColor: Colors.green),
+                  child: const AutoSizeText(
+                    "Login as Admin",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                ),
+              ),
             ],
           ),
         ));
