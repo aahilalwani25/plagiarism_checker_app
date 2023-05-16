@@ -16,6 +16,21 @@ class StudentHomePage extends StatefulWidget {
 class _StudentHomePageState extends State<StudentHomePage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final CustomTextBox _customTextBox = CustomTextBox();
+
+  Widget createPlagiarisedWords(dynamic content){
+
+    return SizedBox(
+      height:  MediaQuery.of(context).size.height * 0.3,
+      child: ListView.builder(
+        itemCount: content.length,
+        itemBuilder: (itemBuilder,index){
+          return ListTile(
+            title: Text(content[index].toString()),
+          );
+      }),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     print("build");
@@ -37,7 +52,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
             child: Column(
               children: [
                 const Center(
-                    child: Text(
+                    child: AutoSizeText(
                   "Check Plagiarised Content",
                   textAlign: TextAlign.center,
                   textDirection: TextDirection.ltr,
@@ -101,7 +116,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
                     ? Padding(
                         padding: EdgeInsets.only(
                             top: MediaQuery.of(context).size.height * 0.01),
-                        child: Text(content.plagiarised!.toString()),
+                        child: AutoSizeText(content.plagiarised!.toString()),
                       )
                     : const Text("No Plagiarism"),
               ],

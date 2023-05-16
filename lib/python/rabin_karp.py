@@ -13,7 +13,7 @@ class StringMatch:
         for j in range(len(self.patterns)):
             pattern = self.patterns[j]
             if len(self.rabin_karp(pattern)) > maxLength:
-                lists = (self.rabin_karp(pattern))
+                lists = (self.rabin_karp(pattern)) #list of words
                 maxLength = len(self.rabin_karp(pattern))
         return lists
 
