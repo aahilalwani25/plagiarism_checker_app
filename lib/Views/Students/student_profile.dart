@@ -23,7 +23,7 @@ class _StudentProfileState extends State<StudentProfile> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Stack(children: [
                   const CircleAvatar(
                       radius: 60,
@@ -36,9 +36,9 @@ class _StudentProfileState extends State<StudentProfile> {
                       child: RawMaterialButton(
                         onPressed: (){},
                         elevation: 2.0,
-                        fillColor: Color(0xFFF5F6F9),
+                        fillColor: const Color(0xFFF5F6F9),
                         //padding: EdgeInsets.all(15.0),
-                        shape: CircleBorder(),
+                        shape: const CircleBorder(),
                         child: const Icon(
                           Icons.camera_alt_outlined,
                           color: Colors.blue,
@@ -49,7 +49,7 @@ class _StudentProfileState extends State<StudentProfile> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  AutoSizeText(
+                  const AutoSizeText(
                     '@Username',
                     style: TextStyle(fontSize: 30),
                   ),

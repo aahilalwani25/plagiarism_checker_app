@@ -50,7 +50,7 @@ class _AppStartScreenState extends State<AppStartScreen>
                 height: screen.height!*0.1,
                 child: TextButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (builder)=>LoginScreen(user: 'students',)));
+                    Navigator.push(context, MaterialPageRoute(builder: (builder)=>const LoginScreen(user: 'students',)));
                   },
                   style: TextButton.styleFrom(backgroundColor: Colors.green),
                   child: const AutoSizeText(
@@ -68,7 +68,7 @@ class _AppStartScreenState extends State<AppStartScreen>
                   ),
                   GestureDetector(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (builder)=>SignupScreen(user: 'students',)));
+                      Navigator.push(context, MaterialPageRoute(builder: (builder)=>const SignupScreen(user: 'students',)));
                     },
                     child: const AutoSizeText(
                       "Signup",
@@ -83,7 +83,7 @@ class _AppStartScreenState extends State<AppStartScreen>
                 height: screen.height! * 0.1,
                 child: TextButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (builder)=>LoginScreen(user: 'teachers',)));
+                    Navigator.push(context, MaterialPageRoute(builder: (builder)=>const LoginScreen(user: 'teachers',)));
                   },
                   style: TextButton.styleFrom(backgroundColor: Colors.green),
                   child: const AutoSizeText(
@@ -101,7 +101,7 @@ class _AppStartScreenState extends State<AppStartScreen>
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (builder)=>SignupScreen(user: 'teachers',)));
+                      Navigator.push(context, MaterialPageRoute(builder: (builder)=>const SignupScreen(user: 'teachers',)));
                     },
                     child: const AutoSizeText(
                       "Signup",
@@ -123,7 +123,7 @@ class _AppStartScreenState extends State<AppStartScreen>
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (builder) => LoginScreen(
+                            builder: (builder) => const LoginScreen(
                                   user: 'super_admin',
                                 )));
                   },

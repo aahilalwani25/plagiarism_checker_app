@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'student_home_page.dart';
 import 'student_profile.dart';
+import 'package:provider/provider.dart';
 //import 'package:flutter/foundation.dart';
 
 class ChangePage with ChangeNotifier {
@@ -16,20 +17,19 @@ class ChangePage with ChangeNotifier {
 
 class StudentMainDashboard extends StatefulWidget {
   final String email;
-  StudentMainDashboard({super.key, required this.email});
+  const StudentMainDashboard({super.key, required this.email});
 
   @override
   State<StudentMainDashboard> createState() => _StudentMainDashboardState();
 }
 
 class _StudentMainDashboardState extends State<StudentMainDashboard> {
-  ChangePage changePage = ChangePage();
-
+  
   @override
   Widget build(BuildContext context) {
     print("build");
     //Content content = Provider.of<Content>(context, listen: false);
-    
+    ChangePage changePage = Provider.of(context);
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
@@ -147,12 +147,12 @@ class _StudentMainDashboardState extends State<StudentMainDashboard> {
           IconButton(onPressed: () {}, icon: const Icon(Icons.power_off))
         ],
       ),
-      body: changePage._selectedIndex == 0
-          ? StudentHomePage()
+      body: changePage.selectedIndex == 0
+          ? const StudentHomePage()
           : changePage.selectedIndex == 1
-              ? Text('Chats')
+              ? const Text('Chats')
               : changePage.selectedIndex == 2
-                  ? Text('Classes')
+                  ? const Text('Classes')
                   : StudentProfile(email: widget.email),
     );
   }

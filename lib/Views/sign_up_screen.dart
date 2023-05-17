@@ -16,7 +16,7 @@ import 'login_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   final String user;
-  SignupScreen({super.key, required this.user});
+  const SignupScreen({super.key, required this.user});
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -255,7 +255,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (builder) => LoginScreen(
+                                            builder: (builder) => const LoginScreen(
                                                   user: 'students',
                                                 )));
                                   }
@@ -306,7 +306,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (builder) => LoginScreen(
+                                          builder: (builder) => const LoginScreen(
                                                 user: 'students',
                                               )));
                                 } else {

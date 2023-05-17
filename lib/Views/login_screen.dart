@@ -8,7 +8,7 @@ import '../Models/login_model.dart';
 
 class LoginScreen extends StatefulWidget {
   final String user;
-  LoginScreen({super.key, required this.user});
+  const LoginScreen({super.key, required this.user});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
