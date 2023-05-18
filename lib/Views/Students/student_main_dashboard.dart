@@ -36,7 +36,7 @@ class _StudentMainDashboardState extends State<StudentMainDashboard> {
           BottomNavigationBarItem(
               icon: const Icon(
                 Icons.home,
-                color: Colors.black,
+                color: Colors.green,
               ),
               label: '',
               activeIcon: Container(
@@ -57,7 +57,7 @@ class _StudentMainDashboardState extends State<StudentMainDashboard> {
                 ),
               )),
           BottomNavigationBarItem(
-              icon: const Icon(Icons.chat_sharp, color: Colors.black),
+              icon: const Icon(Icons.chat_sharp, color: Colors.green),
               label: '',
               activeIcon: Container(
                 width: MediaQuery.of(context).size.width * 0.3,
@@ -79,7 +79,7 @@ class _StudentMainDashboardState extends State<StudentMainDashboard> {
           BottomNavigationBarItem(
               icon: const Icon(
                 Icons.school,
-                color: Colors.black,
+                color: Colors.green,
               ),
               label: '',
               activeIcon: Container(
@@ -100,7 +100,7 @@ class _StudentMainDashboardState extends State<StudentMainDashboard> {
                 ),
               )),
           BottomNavigationBarItem(
-              icon: const Icon(Icons.person, color: Colors.black),
+              icon: const Icon(Icons.person, color: Colors.green),
               label: '',
               activeIcon: Container(
                 width: MediaQuery.of(context).size.width * 0.3,

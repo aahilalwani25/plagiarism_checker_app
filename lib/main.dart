@@ -28,12 +28,13 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
-        darkTheme: ThemeData.light(),
+        darkTheme: ThemeData.dark(),
+        themeMode: ThemeMode.system,
         //themeMode: ThemeMode.dark,
         theme: ThemeData(
           primaryColorDark: Colors.green,
           primaryColor: Colors.green,
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.green,
         ),
         home: const AppStartScreen(),
       ),

@@ -7,7 +7,7 @@ class PlagiarismController{
   PlagiarismController({required this.text});
 
   dynamic start_check() async{
-    MultipartRequest request= MultipartRequest('POST', Uri.parse('http://192.168.2.109:8000/check-plag/'));
+    MultipartRequest request= MultipartRequest('POST', Uri.parse('http://192.168.2.108:8000/check-plag/'));
     request.fields.addAll({'query':text});
     request.headers.addAll({
       'Content-Type':'Application/json',

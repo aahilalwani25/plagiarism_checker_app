@@ -25,16 +25,18 @@ class _StudentProfileState extends State<StudentProfile> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Stack(children: [
-                  const CircleAvatar(
-                      radius: 60,
+                  CircleAvatar(
+                      radius: screen.width!*0.15,
                       backgroundImage:
-                          AssetImage("assets/images/no_image_person.jpg")),
+                          const AssetImage("assets/images/no_image_person.jpg")),
 
                   Positioned(
                       bottom: 0,
-                      right: -25,
+                      left: 50,
                       child: RawMaterialButton(
-                        onPressed: (){},
+                        onPressed: (){
+
+                        },
                         elevation: 2.0,
                         fillColor: const Color(0xFFF5F6F9),
                         //padding: EdgeInsets.all(15.0),
@@ -56,6 +58,18 @@ class _StudentProfileState extends State<StudentProfile> {
                   AutoSizeText(widget.email),
                 ],
               )
+            ],
+          ),
+        ),
+
+        const Card(
+          borderOnForeground: false,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              //heading of biography
+              AutoSizeText('Personal Information', style: TextStyle(fontSize: 30, color: Colors.green, fontWeight: FontWeight.bold),),
+              AutoSizeText(''),
             ],
           ),
         )
