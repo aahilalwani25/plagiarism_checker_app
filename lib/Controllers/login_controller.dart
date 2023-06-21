@@ -43,6 +43,7 @@ class LoginController {
   void Verify(Stream<DatabaseEvent> tableDatas) =>
       tableDatas.forEach((DatabaseEvent event) {
         bool check = false;
+        String? username= null;
         for (DataSnapshot child in event.snapshot.children) {
           //for finding unique id
           //print(child.key);
@@ -52,6 +53,7 @@ class LoginController {
 
           if (data['email'] == email && data['password'] == password) {
             check = true;
+            username= data['username'];
             break;
           }
         }
@@ -61,7 +63,7 @@ class LoginController {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (builder) => StudentMainDashboard(email: email)));
+                    builder: (builder) => StudentMainDashboard(email: email, username: username!,)));
           }
 
           if (user == "teachers") {

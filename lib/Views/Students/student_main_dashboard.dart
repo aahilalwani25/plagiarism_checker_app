@@ -16,8 +16,8 @@ class ChangePage with ChangeNotifier {
 }
 
 class StudentMainDashboard extends StatefulWidget {
-  final String email;
-  const StudentMainDashboard({super.key, required this.email});
+  final String email, username;
+  const StudentMainDashboard({super.key, required this.email, required this.username});
 
   @override
   State<StudentMainDashboard> createState() => _StudentMainDashboardState();
@@ -153,7 +153,7 @@ class _StudentMainDashboardState extends State<StudentMainDashboard> {
               ? const Text('Chats')
               : changePage.selectedIndex == 2
                   ? const Text('Classes')
-                  : StudentProfile(email: widget.email),
+                  : StudentProfile(email: widget.email, username: widget.username,),
     );
   }
 }

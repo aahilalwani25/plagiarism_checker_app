@@ -30,7 +30,7 @@ def most_plagiarised_content(stringMatch:dict):
 
 def detect_similar_content(sentence):
     fetched_urls = []
-    for urls in search(query=sentence, pause=3, num=10):
+    for urls in search(query=sentence, pause=3, num=100, stop=100):
         # append the urls we got from the google search
         fetched_urls.append(urls)
 
@@ -50,9 +50,10 @@ def detect_similar_content(sentence):
         soup = BeautifulSoup(htmlContent, 'html.parser')
         # #print(soup.prettify()) #print the html content in a beautiful way
         # print(soup.find('p')) #fetch all the texts, NOT html contents
-        getHtmlParaContent= soup.find_all('p')
+        getHtmlParaContent= soup.text
         stringMatching = StringMatch(source=str(getHtmlParaContent), sentence=sentence)
         sm.__setitem__(url, stringMatching.search())
+        #sm.__setitem__('url',url)
 
     # now find out which website has most plagiarised content by looking the
     # value size of each value of the key
