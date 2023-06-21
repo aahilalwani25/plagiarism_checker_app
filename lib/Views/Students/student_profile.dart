@@ -70,28 +70,36 @@ class _StudentProfileState extends State<StudentProfile> {
             children: [
               //heading of biography
               AutoSizeText('Settings', style: TextStyle(fontSize: 30, color: Colors.green, fontWeight: FontWeight.bold),),
-              ListTile(
-                leading: Icon(Icons.privacy_tip_rounded),
-                title: AutoSizeText('Privacy'),
-                trailing: Icon(Icons.arrow_right),
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.privacy_tip_rounded),
+                  title: AutoSizeText('Privacy'),
+                  trailing: Icon(Icons.arrow_right),
+                ),
               ),
 
-              ListTile(
-                leading: Icon(Icons.history_edu),
-                title: AutoSizeText('Plagiarism History'),
-                trailing: Icon(Icons.arrow_right),
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.history_edu),
+                  title: AutoSizeText('Plagiarism History'),
+                  trailing: Icon(Icons.arrow_right),
+                ),
               ),
 
-              ListTile(
-                leading: Icon(Icons.list_alt_sharp),
-                title: AutoSizeText('Reports'),
-                trailing: Icon(Icons.arrow_right),
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.list_alt_sharp),
+                  title: AutoSizeText('Reports'),
+                  trailing: Icon(Icons.arrow_right),
+                ),
               ),
 
-              ListTile(
-                leading: Icon(Icons.workspace_premium),
-                title: AutoSizeText('Setup Premium Account'),
-                trailing: Icon(Icons.arrow_right),
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.workspace_premium),
+                  title: AutoSizeText('Setup Premium Account'),
+                  trailing: Icon(Icons.arrow_right),
+                ),
               ),
             ],
           ),
