@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:plagiarism_checker_app/Views/Students/privacy_screen.dart';
 
 import '../../global/components/Screen.dart';
 
@@ -53,7 +54,7 @@ class _StudentProfileState extends State<StudentProfile> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   AutoSizeText(widget.username,
-                    style: TextStyle(fontSize: 30),
+                    style: const TextStyle(fontSize: 30),
                   ),
                   AutoSizeText(widget.email),
                 ],
@@ -62,23 +63,27 @@ class _StudentProfileState extends State<StudentProfile> {
           ),
         ),
 
-        const Card(
+        Card(
           borderOnForeground: false,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
               //heading of biography
-              AutoSizeText('Settings', style: TextStyle(fontSize: 30, color: Colors.green, fontWeight: FontWeight.bold),),
+              const AutoSizeText('Settings', style: TextStyle(fontSize: 30, color: Colors.green, fontWeight: FontWeight.bold),),
               Card(
                 child: ListTile(
-                  leading: Icon(Icons.privacy_tip_rounded),
-                  title: AutoSizeText('Privacy'),
-                  trailing: Icon(Icons.arrow_right),
+                  onTap:(){
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (builder)=> const PrivacyScreen()));
+                  },
+                  leading: const Icon(Icons.privacy_tip_rounded),
+                  title: const AutoSizeText('Privacy'),
+                  trailing: const Icon(Icons.arrow_right),
                 ),
               ),
 
-              Card(
+            const Card(
                 child: ListTile(
                   leading: Icon(Icons.history_edu),
                   title: AutoSizeText('Plagiarism History'),
@@ -86,7 +91,7 @@ class _StudentProfileState extends State<StudentProfile> {
                 ),
               ),
 
-              Card(
+              const Card(
                 child: ListTile(
                   leading: Icon(Icons.list_alt_sharp),
                   title: AutoSizeText('Reports'),
@@ -94,7 +99,7 @@ class _StudentProfileState extends State<StudentProfile> {
                 ),
               ),
 
-              Card(
+              const Card(
                 child: ListTile(
                   leading: Icon(Icons.workspace_premium),
                   title: AutoSizeText('Setup Premium Account'),

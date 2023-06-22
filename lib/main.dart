@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plagiarism_checker_app/Models/content.dart';
+import 'package:plagiarism_checker_app/Models/privacy_model.dart';
 import 'package:provider/provider.dart';
 import 'Models/login_model.dart';
 import 'Models/new_student.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<Content>(create: (_)=>Content()),
         ChangeNotifierProvider<LoginModel>(create: (_)=>LoginModel()),
         ChangeNotifierProvider<ChangePage>(create: (_) => ChangePage()),
+        ChangeNotifierProvider<Privacy>(create: (_) => Privacy()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

@@ -6,7 +6,7 @@ import 'package:plagiarism_checker_app/Controllers/signup_controller.dart';
 import 'package:plagiarism_checker_app/Models/new_student.dart';
 import 'package:plagiarism_checker_app/global/components/toast_message.dart';
 import 'package:provider/provider.dart';
-import '../Controllers/auth_controller.dart';
+import '../Authentication/auth_controller.dart';
 //import '../Controllers/countries_controller.dart';
 import '../Models/content.dart';
 import '../Models/countries.dart';

@@ -43,7 +43,7 @@ class LoginController {
   void Verify(Stream<DatabaseEvent> tableDatas) =>
       tableDatas.forEach((DatabaseEvent event) {
         bool check = false;
-        String? username= null;
+        String? username;
         for (DataSnapshot child in event.snapshot.children) {
           //for finding unique id
           //print(child.key);
