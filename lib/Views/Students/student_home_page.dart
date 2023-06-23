@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../Controllers/plagiarism_controller.dart';
 import '../../Models/content.dart';
 import '../../global/components/textbox.dart';
@@ -93,7 +92,9 @@ class _StudentHomePageState extends State<StudentHomePage> {
                           if (_formKey.currentState!.validate()) {
                             content.setEnabled(false);
                             PlagiarismController pc = PlagiarismController(text: content.content!);
-                            content.setPlagiarised(await pc.start_check());
+                            final Future<dynamic> plag= await pc.start_check(); 
+                            content.setPlagiarised(plag);
+                            content.setWordsCount(content.plagiarised!['values'].length);
                             content.setEnabled(true);
                           }
                         },
@@ -112,16 +113,60 @@ class _StudentHomePageState extends State<StudentHomePage> {
                     ),
                   ),
                 ),
-                content.plagiarised != null
+
+                content.content==null
+                ?(const Text("Paste the content you want to plagiarise"))
+                : content.enabled==false
+                ? const Text("Please wait for detecting plagiarism")
+                :content.plagiarised != null
                     ? Padding(
                         padding: EdgeInsets.only(
                             top: MediaQuery.of(context).size.height * 0.01),
-                        child: AutoSizeText(content.plagiarised!.toString()),
+                        child: /*AutoSizeText(content.plagiarised!.toString()),*/ getList(content),
                       )
-                    : const Text("No Plagiarism"),
+                    :  const Text("No Plagiarism"),
+                
               ],
             ),
           );
         }));
+  }
+
+  Widget getList(Content content){
+    return AnimatedContainer(
+      duration: const Duration(seconds: 1),
+      height: MediaQuery.of(context).size.height*0.2,
+      width: MediaQuery.of(context).size.width * 0.8,
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.red[400],
+              borderRadius: const BorderRadius.only(topLeft:Radius.circular(20), topRight: Radius.circular(20)),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: AutoSizeText(content.plagiarised!['url']),
+            )
+          ),
+
+          SizedBox(
+            height: MediaQuery.of(context).size.height*0.2,
+            child: ListView.builder(
+              itemCount: content.plagiarised!['values'].length,
+              itemBuilder: (itemBuilder,index){
+                return ListTile(
+                  shape: Border.all(style: BorderStyle.solid),
+                  style: ListTileStyle.list,
+                  tileColor: Colors.blue,
+                  title: AutoSizeText(
+                        content.plagiarised!['values'][index].toString()),
+                  //subtitle: AutoSizeText(content.plagiarised!['values'][index].toString()),
+                );
+            }),
+          )
+        ],
+      ),
+    );
   }
 }

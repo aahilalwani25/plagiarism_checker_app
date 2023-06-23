@@ -24,7 +24,8 @@ def most_plagiarised_content(stringMatch:dict):
     for key in stringMatch:
         if len(stringMatch[key]) > maxLength:
             maxLength = len(stringMatch[key])
-            most_plagiarised_content = {key: stringMatch[key]}
+            most_plagiarised_content = {'url': key,
+                                        'values':stringMatch[key]}
 
     return most_plagiarised_content
 

@@ -11,7 +11,6 @@ class PrivacyScreen extends StatefulWidget {
 }
 
 class _PrivacyScreenState extends State<PrivacyScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Consumer<Privacy>(
@@ -29,11 +28,13 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
                   child: ListTile(
                     onTap: () {
                       //set fingerprint clicked to true
-                      privacy.change_fingerprint_tile_clicked(true);
+                      privacy.changeFingerprintTileClicked(true);
                     },
                     leading: const Icon(Icons.fingerprint),
                     title: const AutoSizeText('Fingerprint'),
-                    subtitle: AutoSizeText(privacy.get_enabled_fingerprint_switch()?'Enabled':'Disabled'),
+                    subtitle: AutoSizeText(privacy.getEnabledFingerprintSwitch()
+                        ? 'Enabled'
+                        : 'Disabled'),
                     trailing: const Icon(Icons.arrow_right),
                   ),
                 ),
@@ -63,30 +64,42 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
 
   BottomSheet? openBottomSheet(Privacy privacy, BuildContext context) {
     //open fingerprint
-    if (privacy.get_fingerprint_tile_clicked()) {
-      return 
-      BottomSheet(
-        onClosing: () {
-          privacy.change_fingerprint_tile_clicked(false);
-        }, 
-      builder: (builder) {
+    if (privacy.getFingerprintTileClicked()) {
+      return BottomSheet(onClosing: () {
+        privacy.changeFingerprintTileClicked(false);
+      }, builder: (builder) {
         return Container(
           decoration: const BoxDecoration(
-            color: Colors.green
-          ),
-          height: MediaQuery.of(context).size.height*0.3,
+              color: Colors.green,
+              borderRadius: BorderRadius.all(Radius.circular(20))),
+          height: MediaQuery.of(context).size.height * 0.3,
           width: MediaQuery.of(context).size.width,
-          child:  Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              AutoSizeText('Fingerprint Settings', style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.03),),
+              Center(
+                  child: AutoSizeText(
+                'Fingerprint Settings',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: MediaQuery.of(context).size.height * 0.03),
+              )),
+              Center(
+                  child: AutoSizeText(
+                'Fingerprint will be used as a replacement of password',
+                style: TextStyle(
+                    height: MediaQuery.of(context).size.height * 0.005,
+                    fontWeight: FontWeight.bold,
+                    fontSize: MediaQuery.of(context).size.height * 0.02),
+              )),
               ListTile(
                 title: const AutoSizeText('Enable Fingerprint'),
                 trailing: Switch(
-                  value: privacy.get_enabled_fingerprint_switch(),
-                  onChanged: ((value) => privacy.enabled_fingerprint_switch(value)),
+                  value: privacy.getEnabledFingerprintSwitch(),
+                  onChanged: ((value) =>
+                      privacy.enabledFingerprintSwitch(value)),
                 ),
-              )
+              ),
             ],
           ),
         );
