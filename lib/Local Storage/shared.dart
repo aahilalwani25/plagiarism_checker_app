@@ -7,7 +7,7 @@ class LocalStorage{
     await preferences.setString(key, value);
   }
 
-  static Future<Object?> get(String key, String value) async {
+  static Future<Object?> get(String key) async {
     final preferences = await SharedPreferences.getInstance();
     return preferences.get(key);
   }

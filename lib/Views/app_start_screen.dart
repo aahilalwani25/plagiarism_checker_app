@@ -1,13 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:plagiarism_checker_app/Views/login_screen.dart';
-
+import '../Local Storage/shared.dart';
 import '../global/components/Screen.dart';
+import 'Students/student_main_dashboard.dart';
 import 'sign_up_screen.dart';
 
 class AppStartScreen extends StatefulWidget {
   const AppStartScreen({super.key});
-
+  
   @override
   State<AppStartScreen> createState() => _AppStartScreenState();
 }
@@ -15,6 +16,7 @@ class AppStartScreen extends StatefulWidget {
 class _AppStartScreenState extends State<AppStartScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  String? getId;
 
   @override
   void initState() {
@@ -50,6 +52,18 @@ class _AppStartScreenState extends State<AppStartScreen>
                 height: screen.height!*0.1,
                 child: TextButton(
                   onPressed: () {
+                    getId= LocalStorage.get("userid").toString();
+
+
+                    if(getId!=null){
+                      // Navigator.pushReplacement(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (builder) => StudentMainDashboard(
+                      //               email: email,
+                      //               username: username!,
+                      //             )));
+                    }                   
                     Navigator.push(context, MaterialPageRoute(builder: (builder)=>const LoginScreen(user: 'students',)));
                   },
                   style: TextButton.styleFrom(backgroundColor: Colors.green),
