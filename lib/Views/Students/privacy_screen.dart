@@ -63,9 +63,13 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
   }
 
   BottomSheet? openBottomSheet(Privacy privacy, BuildContext context) {
+    // TickerProvider tc= 
+    // AnimationController ac= BottomSheet.createAnimationController();
     //open fingerprint
     if (privacy.getFingerprintTileClicked()) {
-      return BottomSheet(onClosing: () {
+      return BottomSheet(
+        enableDrag: true,
+        onClosing: () {
         privacy.changeFingerprintTileClicked(false);
       }, builder: (builder) {
         return Container(
@@ -100,6 +104,16 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
                       privacy.enabledFingerprintSwitch(value)),
                 ),
               ),
+
+              ActionChip(
+                backgroundColor: Colors.white,
+                onPressed:(){
+                  privacy.changeFingerprintTileClicked(false);
+                },
+                label: const Center(
+                  child: Text('Close')
+                )
+              )
             ],
           ),
         );

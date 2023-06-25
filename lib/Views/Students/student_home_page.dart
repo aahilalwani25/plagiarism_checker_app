@@ -124,7 +124,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
                     : content.plagiarised != null
                         ? SizedBox(
                             child: ActionChip(
-                              padding: EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(8),
                               backgroundColor: Colors.red,
                               onPressed: ()async{
                                 PdfController pdfController= PdfController(content: content);

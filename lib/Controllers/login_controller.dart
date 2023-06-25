@@ -5,11 +5,13 @@ import '../Views/Teachers/teacher_dashboard.dart';
 import '../Views/admin_dashboard.dart';
 import '../Views/Students/student_main_dashboard.dart';
 import '../global/components/toast_message.dart';
+import '../Local Storage/shared.dart';
 
 class LoginController {
   Database? db;
   String email, password, user;
   BuildContext context;
+  
 
   LoginController(
       {required this.context,
@@ -43,7 +45,8 @@ class LoginController {
   void Verify(Stream<DatabaseEvent> tableDatas) =>
       tableDatas.forEach((DatabaseEvent event) {
         bool check = false;
-        String? username;
+        String? username, id;
+        
         for (DataSnapshot child in event.snapshot.children) {
           //for finding unique id
           //print(child.key);
@@ -53,6 +56,9 @@ class LoginController {
 
           if (data['email'] == email && data['password'] == password) {
             check = true;
+            id= child.key;
+
+            LocalStorage.set("userid", id!);
             username= data['username'];
             break;
           }
