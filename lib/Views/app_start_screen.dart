@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:plagiarism_checker_app/Views/login_screen.dart';
 import '../Local Storage/shared.dart';
 import '../global/components/Screen.dart';
-import 'Students/student_main_dashboard.dart';
 import 'sign_up_screen.dart';
 
 class AppStartScreen extends StatefulWidget {

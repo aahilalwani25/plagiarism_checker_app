@@ -1,11 +1,10 @@
-import 'package:flutter/services.dart';
 import 'package:open_file/open_file.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pdf/pdf.dart';
 import 'package:plagiarism_checker_app/Models/content.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart';
+import 'package:printing/printing.dart';
 
 class PdfController {
   
@@ -18,10 +17,10 @@ class PdfController {
   }
 
   Future<File> _generatePdf() async {
-    final font = Font.ttf(await rootBundle.load("assets/fonts/OpenSans-Regular.ttf"));
-
+    //final font = Font.ttf(await rootBundle.load("assets/fonts/OpenSans-Regular.ttf"));
+    final font = await PdfGoogleFonts.nunitoExtraLight();
     Document pdf = Document();
-
+    
     pdf.addPage(MultiPage(
         pageFormat: PdfPageFormat.a4,
         footer: (context) => Column(children: [
@@ -51,8 +50,8 @@ class PdfController {
             ]));
 
     final savePdfBytes = await pdf.save();
-    final dir = await getApplicationDocumentsDirectory();
-    File file = File('${dir.path}/doc_1');
+    final output = await getTemporaryDirectory();
+    final file = File('${output.path}/example.pdf');
     await file.writeAsBytes(savePdfBytes);
     return file;
   }
