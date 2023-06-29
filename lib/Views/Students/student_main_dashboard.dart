@@ -43,7 +43,7 @@ class _StudentMainDashboardState extends State<StudentMainDashboard> {
                 width: MediaQuery.of(context).size.width * 0.3,
                 height: MediaQuery.of(context).size.width * 0.1,
                 decoration: const BoxDecoration(
-                    color: Colors.blue,
+                    color: Colors.green,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -63,7 +63,7 @@ class _StudentMainDashboardState extends State<StudentMainDashboard> {
                 width: MediaQuery.of(context).size.width * 0.3,
                 height: MediaQuery.of(context).size.width * 0.1,
                 decoration: const BoxDecoration(
-                    color: Colors.blue,
+                    color: Colors.green,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -106,7 +106,7 @@ class _StudentMainDashboardState extends State<StudentMainDashboard> {
                 width: MediaQuery.of(context).size.width * 0.3,
                 height: MediaQuery.of(context).size.width * 0.1,
                 decoration: const BoxDecoration(
-                    color: Colors.blue,
+                    color: Colors.green,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
